@@ -1,0 +1,26 @@
+﻿<section>
+    <h5>Hello, {{ model.tab.clientName }}</h5>
+
+    <h6>We've got {{ model.beverages.length }} beverages available.</h6>
+
+    <ul class="list-group">
+        <li class="list-group-item" ng-repeat="beverage in model.beverages">
+            {{beverage.description}} ${{beverage.price | number : 2}}
+            <button ng-click="model.orderBeverage(beverage.menuNumber)" class="btn btn-sm btn-success">Order</button>
+            <button ng-click="model.serveBeverage(beverage.menuNumber)" ng-if="model.isOutstanding(beverage.menuNumber)" class="btn btn-sm btn-default">Serve</button>
+        </li>
+    </ul>
+
+    <h6 ng-if="model.tab.servedItemsValue > 0">Bill: ${{ model.tab.servedItemsValue | number : 2 }}</h6>
+
+    <form ng-submit="model.closeTab(model.amountPaid)" class="form-inline">
+        <input class="form-control" ng-model="model.amountPaid" type="number" />
+        <button type="submit" class="btn btn-danger">Close Tab</button>
+    </form>
+    
+    <h5>Real-time event log</h5>
+    
+    <ul class="list-group">
+        <li class="list-group-item" ng-repeat="event in model.events">{{ event | json }}</li>
+    </ul>
+</section>

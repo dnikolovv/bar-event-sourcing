@@ -1,0 +1,6 @@
+﻿<section>
+    <h5>Thank you for being our customer.</h5>
+    <h6>Amount paid: ${{ model.tab.totalPaid | number : 2 }} Tip left: ${{ model.tab.tipValue | number : 2 }}</h6>
+
+    <button ng-click="model.openTab()" class="btn btn-success">Go for another round</button>
+</section>
