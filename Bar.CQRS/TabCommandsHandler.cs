@@ -57,11 +57,8 @@ namespace Bar.CQRS
         public Task<Option<Unit, Error>> Handle(OpenTab request, CancellationToken cancellationToken) =>
             ValidateCommandIsNotEmpty(request).
             Filter(r => !string.IsNullOrEmpty(r.ClientName), Errors.Tab.InvalidClientName).FlatMapAsync(command =>
-            TabShouldNotExist(command.TabId, cancellationToken).MapAsync(_ =>
-            {
-                var tab = new Tab(command.TabId);
-                return PublishEvents(tab.Id, tab.OpenTab(command.ClientName));
-            }));
+            TabShouldNotExist(command.TabId, cancellationToken).MapAsync(tab =>
+            PublishEvents(tab.Id, tab.OpenTab(command.ClientName))));
 
         private Task<Option<Tab, Error>> AssureAllBeveragesAreOutstanding(ServeBeverages command, CancellationToken cancellationToken) =>
             GetTabIfNotClosed(command.TabId, cancellationToken).
@@ -114,10 +111,10 @@ namespace Bar.CQRS
             return Unit.Value;
         }
 
-        private Task<Option<Unit, Error>> TabShouldNotExist(Guid id, CancellationToken cancellationToken) =>
+        private Task<Option<Tab, Error>> TabShouldNotExist(Guid id, CancellationToken cancellationToken) =>
             GetTabFromStore(id, cancellationToken)
                 .SomeWhen<Tab, Error>(t => t == null, Errors.Tab.AlreadyExists(id))
-                .MapAsync(async t => Unit.Value);
+                .MapAsync(async _ => new Tab(id));
 
         private static Option<TCommand, Error> ValidateCommandIsNotEmpty<TCommand>(TCommand command) where TCommand : TabCommand =>
             command
