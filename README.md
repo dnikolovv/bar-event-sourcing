@@ -70,7 +70,9 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-You'll need to have [PostgreSql](https://www.postgresql.org/download/) either installed locally or at least have some instance available to set up the connection strings.
+If you have Docker installed you can just run `docker-compose up`.
+
+If not, you'll need to have [PostgreSql](https://www.postgresql.org/download/) either installed locally or at least have some instance available to set up the connection strings.
 
 You'll also need at least version `2.2` of the [`.NET Core SDK`](https://dotnet.microsoft.com/download).
 
