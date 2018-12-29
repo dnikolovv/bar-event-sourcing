@@ -37,8 +37,11 @@
     }
 
     function showResponseErrors(response) {
-      const errors = response.data.messages;
-      toastr.error(errors.join("; ", "Error"));
+        const errors = response.data.messages;
+
+        if (errors) {
+            toastr.error(errors.join("; ", "Error"));
+        }
     }
   }]);
 })(app);

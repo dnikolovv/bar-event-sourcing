@@ -1,0 +1,1 @@
+docker-compose -f docker-compose.integration.yml up --build --exit-code-from bar.tests
