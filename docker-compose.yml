@@ -7,7 +7,7 @@ services:
     environment:
       POSTGRES_PASSWORD: postgres
   bar.web:
-    image: ${DOCKER_REGISTRY-}barweb
+    image: barweb
     build:
       context: .
       dockerfile: Bar.Web/Dockerfile

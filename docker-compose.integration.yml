@@ -7,7 +7,7 @@ services:
     environment:
       POSTGRES_PASSWORD: postgres
   bar.tests:
-    image: ${DOCKER_REGISTRY-}bartests
+    image: bartests
     build:
       context: .
       dockerfile: Bar.Tests/Dockerfile
