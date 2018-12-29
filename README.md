@@ -78,6 +78,10 @@ You'll also need at least version `2.2` of the [`.NET Core SDK`](https://dotnet.
 
 > Note that you can point both the event-store and the relational connection to the same database
 
+#### Using Docker
+
+1. Execute `run-app.sh`
+
 #### Using Visual Studio
 
 1. Open the `.sln` file using Visual Studio
@@ -101,7 +105,13 @@ You should see the "open tab" screen.
 
 > Note that you can point both the event-store and the relational connection to the same database
 
-1. Set up the connection strings inside `Bar.Tests/appsettings.json` (the database that you're pointing at must have the same schema as the one that the application is using, consider running `Update-Database` against the test database before setting it as such)
+#### Using Docker
+
+1. Simply run `run-tests.sh`.
+
+#### Using Visual Studio or the `dotnet` CLI
+
+1. Set up the connection strings inside `Bar.Tests/appsettings.json` to a valid database. (if you point it to an unexisting one, the app will create it for you)
 2. Either run them through the `Test Explorer` in Visual Studio or using `dotnet test`
 
 ## Contributing
