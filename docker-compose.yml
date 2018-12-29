@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  bar.sql:
+    image: postgres:9.5
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+  bar.web:
+    image: barweb
+    build:
+      context: .
+      dockerfile: Bar.Web/Dockerfile
+    volumes:
+      - ./Bar.Web/wwwroot:/app/wwwroot
+    depends_on:
+      - bar.sql
+    links:
+      - bar.sql:db

@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/dnikolovv/bar-event-sourcing.svg?branch=master)](https://travis-ci.org/dnikolovv/bar-event-sourcing)
+
 # Bar
 
 A sample .NET application featuring domain-driven design, CQRS, event-sourcing and a bit of SignalR. It resembles an actual bar. You can open a tab, order beverages, have them served and close the tab. It has a very simple (and very, very ugly) AngularJs interface so you can run it locally and start clicking around.

@@ -26,9 +26,15 @@ namespace Bar.Tests
 
             var startup = new Startup(_configuration);
             var services = new ServiceCollection();
+
             startup.ConfigureServices(services);
+
             var provider = services.BuildServiceProvider();
+
             _scopeFactory = provider.GetService<IServiceScopeFactory>();
+
+            var dbContext = provider.GetService<ApplicationDbContext>();
+            dbContext.Database.EnsureCreated();
         }
 
         public static string RelationalDbConnectionString => _configuration.GetConnectionString("DefaultConnection");

@@ -1,0 +1,10 @@
+language: generic
+
+services:
+  - docker
+
+before_install:
+  - chmod +x run-tests.sh
+
+script:
+  - ./run-tests.sh

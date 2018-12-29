@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  bar.tests.sql:
+    image: postgres:9.5
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+  bar.tests:
+    image: bartests
+    build:
+      context: .
+      dockerfile: Bar.Tests/Dockerfile
+    depends_on:
+      - bar.tests.sql
+    links:
+      - bar.tests.sql:db
