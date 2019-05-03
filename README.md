@@ -16,6 +16,8 @@ Each handler is implemented as a chain of functions (using [`Optional.Async`](ht
 
 The chain itself contains all of the business validations such as checking whether the tab is closed, checking whether you're not serving beverages that haven't been ordered, etc.
 
+> Note that the Either monad in this case is called `Option`.
+
 Example:
 
 ```csharp
